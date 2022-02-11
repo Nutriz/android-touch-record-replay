@@ -6,9 +6,12 @@ echo "$TOUCH_DEVICE"
 
 # detect "-emulator" argument for emulator
 BINARY_NAME="mysendevent"
-if [[ "$1" == "-emulator" ]]
+if [[ "$1" == "-emulator-x86" ]]
 then
-   BINARY_NAME+="-x86"
+   BINARY_NAME+="--x86"
+elif [[ "$1" == "-emulator-arm64" ]]
+then
+   BINARY_NAME+="-arm64"
 fi
 
 # record into specific touch file
