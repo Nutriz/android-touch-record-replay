@@ -6,10 +6,10 @@ echo "$TOUCH_DEVICE"
 
 # detect "-emulator" argument for emulator
 BINARY_NAME="mysendevent"
-if [[ "$1" == "-emulator-x86" ]]
+if [[ "$1" == "-x86" ]]
 then
    BINARY_NAME+="-x86"
-elif [[ "$1" == "-emulator-arm64" ]]
+elif [[ "$1" == "-arm64" ]]
 then
    BINARY_NAME+="-arm64"
 fi
