@@ -68,10 +68,13 @@ git clone https://github.com/Nutriz/android-touch-record-replay
 ./replay_touch_events.sh -realdevice
 
 # replay on emulator with default filename
-./replay_touch_events.sh -emulator
+./replay_touch_events.sh -emulator-x86
 
 # replay on emulator with specific filename
-./replay_touch_events.sh -emulator my_records.txt
+./replay_touch_events.sh -emulator-x86 my_records.txt
+
+# replay on emulator on Mac computer with Apple silicon
+./replay_touch_events.sh -emulator-arm64
 
 ```
 
