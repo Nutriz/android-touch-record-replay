@@ -12,6 +12,7 @@ class ParseCommandLine:
     apk: name of the Demo apk, example 'Demo-release.apk'.
     activity: main activity, example 'com.contentsquare.android.demo/.main.ui.MainActivity'
     quality: Session replay quality should be LOW, MEDIUM or HIGH.
+    architecture: Mac architecture, x86 or arm64.
     """
 
     @staticmethod
@@ -21,11 +22,12 @@ class ParseCommandLine:
         parser.add_argument("activity",
                             help="main activity, example 'com.contentsquare.android.demo/.main.ui.MainActivity'")
         parser.add_argument("quality", help="Session replay quality should be LOW, MEDIUM or HIGH.")
+        parser.add_argument("architecture", help="Mac architecture, x86 or arm64")
         args = parser.parse_args()
-        print("test apk={}, activity={}, quality={}".format(args.apk, args.activity, args.quality))
+        print("test apk={}, activity={}, quality={}, architecture={}".format(args.apk, args.activity, args.quality, args.architecture))
         print("/!\ Be sure to start one, and only one Pixel 2 emutator, with API level 28, before this script.")
         print("/!\ Be sure to start the Session Replay local player before this script.")
-        print("/!\ Be sure that mysendevent-x86 in android-touch-record-replay is executable.")
+        print("/!\ Be sure that mysendevent-x86 or mysendevent-arm64 in android-touch-record-replay is executable.")
         return args
 
 
@@ -38,6 +40,7 @@ class AdbCommands:
         self.package = args.activity.split('/')[0]
         self.activity = args.activity.split('/')[1]
         self.quality = args.quality
+        self.architecture = args.architecture
 
     def uninstall(self):
         print("\nUninstall: ", self.package)
@@ -90,7 +93,7 @@ class AdbCommands:
     def play(self):
         print("\nPlay...", self.complete_activity_name)
         AdbCommands.checked_subprocess_call(
-            "./replay_touch_events.sh -x86 recorded_touch_events_sr_test_scenario.txt")
+            "./replay_touch_events.sh -{} recorded_touch_events_sr_test_scenario.txt".format(self.architecture))
         # waiting for the app start.
         time.sleep(5)
         return self
