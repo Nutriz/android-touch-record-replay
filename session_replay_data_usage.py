@@ -9,7 +9,7 @@ import re
 
 class ParseCommandLine:
     usage_meg = """session_replay_data_usage apk activity
-    apk: name of the Demo apk, example 'Demo-release.apk'.
+    apk: name of the Demo apk, example 'demoApp-release.apk'.
     activity: main activity, example 'com.contentsquare.android.demo/.main.ui.MainActivity'
     quality: Session replay quality should be LOW, MEDIUM or HIGH.
     architecture: Mac architecture, x86 or arm64.
@@ -56,7 +56,7 @@ class AdbCommands:
     def configure(self):
         print("\nConfigure SDK")
         AdbCommands.checked_subprocess_call(
-            'adb shell am force-stop {} && adb shell "am start -W -a android.intent.action.VIEW -d cs-{}://contentsquare.com?activationKey=weballwin\&userId=iamjenkins\&configure="DEVELOPER_SESSION_REPLAY_URL=http://10.0.2.2:3457,SESSION_REPLAY_FORCE_START=true,VERBOSE_LOG=true""'.format(
+            'adb shell am force-stop {} && adb shell "am start -W -a android.intent.action.VIEW -d cs-{}://contentsquare.com?activationKey=weballwin\&userId=iamjenkins\&configure="DEVELOPER_SESSION_REPLAY_URL=http://10.0.2.2:7014,SESSION_REPLAY_FORCE_START=true,VERBOSE_LOG=true""'.format(
                 self.package, self.package), timeout=5)
         return self
 
