@@ -56,7 +56,7 @@ class AdbCommands:
     def configure(self):
         print("\nConfigure SDK")
         AdbCommands.checked_subprocess_call(
-            'adb shell am force-stop {} && adb shell "am start -W -a android.intent.action.VIEW -d cs-{}://contentsquare.com?activationKey=weballwin\&userId=iamjenkins\&configure="DEVELOPER_SESSION_REPLAY_URL=http://10.0.2.2:7014,SESSION_REPLAY_FORCE_START=true,VERBOSE_LOG=true""'.format(
+            'adb shell am force-stop {} && adb shell "am start -W -a android.intent.action.VIEW -d cs-{}://contentsquare.com?activationKey=weballwin\&userId=iamjenkins\&configure="DEVELOPER_SESSION_REPLAY_URL=http://10.0.2.2:8080,SESSION_REPLAY_FORCE_START=true,VERBOSE_LOG=true""'.format(
                 self.package, self.package), timeout=5)
         return self
 
